@@ -10,14 +10,15 @@ const initApp = ():void => {
   // The form that allows users to add items to the list
   const itemEntryForm = document.getElementById('itemEntryForm') as HTMLFormElement
   
+  // actions to run when clicking the submit button
   itemEntryForm.addEventListener('submit', (event: SubmitEvent): void => {
-    event.preventDefault() // prevents the page refresh on the form submission
+    event.preventDefault() // clicking on submit doesn't reload the page 
     
     const input = document.getElementById('newItem') as HTMLInputElement
     const newEntryText: string = input.value.trim() // remove whitespace
     if (!newEntryText) return // if no text was entered, quit the program
 
-    // if list is not empty, assign the ID corresponding to the last entry + 1
+    // if list not empty, assign the ID corresponding to the last entry + 1
     // if list is empty, assign ID n°1
     const itemID: number = fullList.list.length
       ? parseInt(fullList.list[fullList.list.length - 1].id) + 1
@@ -40,6 +41,7 @@ const initApp = ():void => {
     template.clear() // clear the display
   })
 
+  // Load the list and display it
   fullList.load()
   template.render(fullList)
 
